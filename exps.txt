@@ -174,5 +174,14 @@ public class BankService {
 
 
 
+mvn archetype:generate
+groupid:com.bnmit
+artefactid:sample-app
+mvn package
+mvn clean 
+mvn package
+cd target
+dir
+java -cp   com.bnmit.App
 
 
