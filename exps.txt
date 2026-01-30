@@ -1,0 +1,178 @@
+experiment 1
+
+mkdir git_lab1
+cd git_lab1
+git init
+echo "hello world" >file1.txt
+git status
+git add file1.txt
+git commit -m "this is first commit"
+git add
+git log
+
+
+exp 2
+
+git init
+git branch branch
+git checkout branch 
+echo"" > file1.txt
+git add
+git status
+git commit -m ""
+git checkout master
+git status
+echo"">file1.txt
+git add
+git commit -m ""
+git status
+git merge branch
+git status
+git add
+git commit -m ""
+git log --oneline
+git branch -d branch
+
+
+experiment 3
+sign in to GitHub
+cd desktop
+git clone
+cd git 3
+touch main.py
+print()
+git add 
+git commit -m
+git push -u origin master
+make a small change on GitHub
+go to git bash
+git pull origin main
+
+
+exp 4
+git clone <repository-url>
+cd repo
+touch file1.txt
+echo "This file is created in master branch" > file1.txt
+git status
+git add file1.txt
+git commit -m "Initial commit in master"
+git push origin main
+git pull origin main
+git branch feature-1
+git checkout feature-1
+echo "This change is from feature-1 branch" >> file1.txt
+touch feature.txt
+echo "Feature branch file" > feature.txt
+git status
+git add .
+git commit -m "Changes done in feature-1"
+git push origin feature-1
+
+
+
+
+
+experiment 5
+cd ~/desktop/git3
+git add .
+git commit -m "Your commit message here"
+git push origin main
+git tag -a v1.0 -m "v1.0 created"
+git tag -a v1.2 -m "v1.2 created"
+git tag
+git show v1.0
+git push origin v1.0
+git push origin v1.2
+
+
+
+
+
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo '--- Building the application ---'
+                bat 'echo Build step running'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                bat 'echo Test step running'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                bat 'echo Deploy step running'
+            }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline execution finished.'
+        }
+        failure {
+            echo 'Pipeline failed. Check the logs.'
+        }
+        success {
+            echo 'Pipeline succeeded.'
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+class BankAccount { 
+    private double balance; 
+ 
+    public BankAccount(double initialBalance) { 
+        if (initialBalance < 0) 
+            throw new IllegalArgumentException("Initial balance cannot be negative"); 
+        this.balance = initialBalance; 
+    } 
+    public void deposit(double amount) { 
+        if (amount <= 0) 
+            throw new IllegalArgumentException("Deposit must be positive"); 
+        balance += amount; 
+    } 
+ 
+    public void withdraw(double amount) { 
+        if (amount <= 0 || amount > balance) 
+            throw new IllegalArgumentException("Invalid withdrawal"); 
+        balance -= amount; 
+    } 
+ 
+   public double getBalance() { 
+        return balance; 
+    } 
+} 
+public class BankService { 
+    public static void main(String[] args) { 
+        BankAccount acc = new BankAccount(1000); 
+        acc.deposit(500); 
+        acc.withdraw(300); 
+        System.out.println("Final Balance: " + acc.getBalance()); 
+    } 
+} 
+
+
+
+
+
+
+
