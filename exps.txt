@@ -1,3 +1,4 @@
+4)
 gedit plain.txt
 openssl enc -aes-128-cbc -e -in plain.txt -out cipher.bin -k apple -iv 001122
 xxd cipher.bin
@@ -8,7 +9,7 @@ cat decrpt.txt
 
 
 
-
+5)
 openssl enc -aes-128-ecb -in pic_original.bmp -out ecb.bmp -k apple
 head -c 54 pic_original.bmp > header
 tail -c +55 ecb.bmp > body.ecb
@@ -23,26 +24,56 @@ eog new_cbc.bmp
 
 
 
-
-
+7
+# 1. Create a plaintext file
 touch plain.txt
-gedit plain.txt
+gedit plain.txt     # Write some text in plain.txt and save it
+
+# 2. Encrypt using AES-128-ECB
 openssl enc -aes-128-ecb -e -in plain.txt -out cipher_ecb.bin -K 0123456789abcdeffedcba9876543210
+
+# 3. View the ciphertext in hex (optional) change one byte
 ghex cipher_ecb.bin
+ 
+# 4. Decrypt ECB ciphertext
 openssl enc -aes-128-ecb -d -in cipher_ecb.bin -out op_ecb.txt -K 0123456789abcdeffedcba9876543210
 
+# 5. Encrypt using AES-128-CBC
 openssl enc -aes-128-cbc -e -in plain.txt -out cipher_cbc.bin -K 0123456789abcdeffedcba9876543210 -iv 00112233445566778899aabbccddeeff
+
+# 6. View the CBC ciphertext in hex (optional) change one byte
 ghex cipher_cbc.bin
+
+# 7. Decrypt CBC ciphertext
 openssl enc -aes-128-cbc -d -in cipher_cbc.bin -out op_cbc.txt -K 0123456789abcdeffedcba9876543210 -iv 00112233445566778899aabbccddeeff
 
+# 8. View decrypted output
 cat op_ecb.txt
 cat op_cbc.txt
 
+part b
+echo "THIS IS SAMPLE DATA FOR AES IV TEST" > abc.txt
+iv1
+openssl enc -aes-128-cbc -e -in abc.txt -out cipher_iv1.bin -K 00112233445566778899AABBCCDDEEFF -iv 0102030405060708090A0B0C0D0E0F10
+xxd cipher_iv1.bin
+iv2 same key
+openssl enc -aes-128-cbc -e -in abc.txt -out cipher_iv2.bin -K 00112233445566778899AABBCCDDEEFF -iv 1112131415161718191A1B1C1D1E1F20
+xxd cipher_iv2.bin
+decrpyt iv1
+openssl enc -aes-128-cbc -d -in cipher_iv1.bin -out dec_iv1.txt -K 00112233445566778899AABBCCDDEEFF -iv 0102030405060708090A0B0C0D0E0F10
+cat dec_iv1.txt
+openssl enc -aes-128-cbc -d -in cipher_iv2.bin -out dec_iv2.txt -K 00112233445566778899AABBCCDDEEFF -iv 1112131415161718191A1B1C1D1E1F20
+cat dec_iv2.txt
 
 
 
 
 
+
+
+
+
+6)
 echo -n 12345 > f1.txt
 echo -n 1234567890 > f2.txt
 echo -n 1234567890abcdef > f3.txt
@@ -66,6 +97,7 @@ openssl enc -aes-128-cbc -d -in f3.bin -out f3_dec.txt -K 0123456789abcdeffedcba
 openssl enc -aes-128-cbc -d -in f3.bin -out f3_nopad.txt -nopad -K 0123456789abcdeffedcba9876543210 -iv 00112233445566778899aabbccddeeff
 xxd f3_dec.txt
 xxd f3_nopad.txt
+
 
 
 
