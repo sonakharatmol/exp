@@ -1,187 +1,76 @@
-experiment 1
-
-mkdir git_lab1
-cd git_lab1
-git init
-echo "hello world" >file1.txt
-git status
-git add file1.txt
-git commit -m "this is first commit"
-git add
-git log
-
-
-exp 2
-
-git init
-git branch branch
-git checkout branch 
-echo"" > file1.txt
-git add
-git status
-git commit -m ""
-git checkout master
-git status
-echo"">file1.txt
-git add
-git commit -m ""
-git status
-git merge branch
-git status
-git add
-git commit -m ""
-git log --oneline
-git branch -d branch
-
-
-experiment 3
-sign in to GitHub
-cd desktop
-git clone
-cd git 3
-touch main.py
-print()
-git add 
-git commit -m
-git push -u origin master
-make a small change on GitHub
-go to git bash
-git pull origin main
-
-
-exp 4
-git clone <repository-url>
-cd repo
-touch file1.txt
-echo "This file is created in master branch" > file1.txt
-git status
-git add file1.txt
-git commit -m "Initial commit in master"
-git push origin main
-git pull origin main
-git branch feature-1
-git checkout feature-1
-echo "This change is from feature-1 branch" >> file1.txt
-touch feature.txt
-echo "Feature branch file" > feature.txt
-git status
-git add .
-git commit -m "Changes done in feature-1"
-git push origin feature-1
-
-
-
-
-
-experiment 5
-cd ~/desktop/git3
-git add .
-git commit -m "Your commit message here"
-git push origin main
-git tag -a v1.0 -m "v1.0 created"
-git tag -a v1.2 -m "v1.2 created"
-git tag
-git show v1.0
-git push origin v1.0
-git push origin v1.2
-
-
-
-
-
-pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
-            steps {
-                echo '--- Building the application ---'
-                bat 'echo Build step running'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                bat 'echo Test step running'
-            }
-        }
-
-        stage('Deploy') {
-            steps {
-                bat 'echo Deploy step running'
-            }
-        }
-    }
-
-    post {
-        always {
-            echo 'Pipeline execution finished.'
-        }
-        failure {
-            echo 'Pipeline failed. Check the logs.'
-        }
-        success {
-            echo 'Pipeline succeeded.'
-        }
-    }
-}
+gedit plain.txt
+openssl enc -aes-128-cbc -e -in plain.txt -out cipher.bin -k apple -iv 001122
+xxd cipher.bin
+openssl enc -aes-128-cbc -d -in cipher.bin -out decrpt.txt -k apple -iv 001122
+cat decrpt.txt
 
 
 
 
 
 
+openssl enc -aes-128-ecb -in pic_original.bmp -out ecb.bmp -k apple
+head -c 54 pic_original.bmp > header
+tail -c +55 ecb.bmp > body.ecb
+cat header body.ecb > new_ecb.bmp
+eog new_ecb.bmp
+openssl enc -aes-128-cbc -in pic_original.bmp -out cbc.bmp -k apple -iv 0011223344556677
+head -c 54 pic_original.bmp > header
+tail -c +55 cbc.bmp > body.cbc
+cat header body.cbc > new_cbc.bmp
+eog new_cbc.bmp
 
 
 
 
 
 
-class BankAccount { 
-    private double balance; 
- 
-    public BankAccount(double initialBalance) { 
-        if (initialBalance < 0) 
-            throw new IllegalArgumentException("Initial balance cannot be negative"); 
-        this.balance = initialBalance; 
-    } 
-    public void deposit(double amount) { 
-        if (amount <= 0) 
-            throw new IllegalArgumentException("Deposit must be positive"); 
-        balance += amount; 
-    } 
- 
-    public void withdraw(double amount) { 
-        if (amount <= 0 || amount > balance) 
-            throw new IllegalArgumentException("Invalid withdrawal"); 
-        balance -= amount; 
-    } 
- 
-   public double getBalance() { 
-        return balance; 
-    } 
-} 
-public class BankService { 
-    public static void main(String[] args) { 
-        BankAccount acc = new BankAccount(1000); 
-        acc.deposit(500); 
-        acc.withdraw(300); 
-        System.out.println("Final Balance: " + acc.getBalance()); 
-    } 
-} 
+touch plain.txt
+gedit plain.txt
+openssl enc -aes-128-ecb -e -in plain.txt -out cipher_ecb.bin -K 0123456789abcdeffedcba9876543210
+ghex cipher_ecb.bin
+openssl enc -aes-128-ecb -d -in cipher_ecb.bin -out op_ecb.txt -K 0123456789abcdeffedcba9876543210
+
+openssl enc -aes-128-cbc -e -in plain.txt -out cipher_cbc.bin -K 0123456789abcdeffedcba9876543210 -iv 00112233445566778899aabbccddeeff
+ghex cipher_cbc.bin
+openssl enc -aes-128-cbc -d -in cipher_cbc.bin -out op_cbc.txt -K 0123456789abcdeffedcba9876543210 -iv 00112233445566778899aabbccddeeff
+
+cat op_ecb.txt
+cat op_cbc.txt
 
 
 
 
 
-mvn archetype:generate
-groupid:com.bnmit
-artefactid:sample-app
-mvn package
-mvn clean 
-mvn package
-cd target
-dir
-java -cp   com.bnmit.App
+
+echo -n 12345 > f1.txt
+echo -n 1234567890 > f2.txt
+echo -n 1234567890abcdef > f3.txt
+
+ls -l f*.txt
+
+openssl enc -aes-128-cbc -e -in f1.txt -out f1.bin -K 0123456789abcdeffedcba9876543210 -iv 00112233445566778899aabbccddeeff
+openssl enc -aes-128-cbc -d -in f1.bin -out f1_dec.txt -K 0123456789abcdeffedcba9876543210 -iv 00112233445566778899aabbccddeeff
+openssl enc -aes-128-cbc -d -in f1.bin -out f1_nopad.txt -nopad -K 0123456789abcdeffedcba9876543210 -iv 00112233445566778899aabbccddeeff
+xxd f1_dec.txt
+xxd f1_nopad.txt
+
+openssl enc -aes-128-cbc -e -in f2.txt -out f2.bin -K 0123456789abcdeffedcba9876543210 -iv 00112233445566778899aabbccddeeff
+openssl enc -aes-128-cbc -d -in f2.bin -out f2_dec.txt -K 0123456789abcdeffedcba9876543210 -iv 00112233445566778899aabbccddeeff
+openssl enc -aes-128-cbc -d -in f2.bin -out f2_nopad.txt -nopad -K 0123456789abcdeffedcba9876543210 -iv 00112233445566778899aabbccddeeff
+xxd f2_dec.txt
+xxd f2_nopad.txt
+
+openssl enc -aes-128-cbc -e -in f3.txt -out f3.bin -K 0123456789abcdeffedcba9876543210 -iv 00112233445566778899aabbccddeeff
+openssl enc -aes-128-cbc -d -in f3.bin -out f3_dec.txt -K 0123456789abcdeffedcba9876543210 -iv 00112233445566778899aabbccddeeff
+openssl enc -aes-128-cbc -d -in f3.bin -out f3_nopad.txt -nopad -K 0123456789abcdeffedcba9876543210 -iv 00112233445566778899aabbccddeeff
+xxd f3_dec.txt
+xxd f3_nopad.txt
+
+
+
+
+
+
 
 
