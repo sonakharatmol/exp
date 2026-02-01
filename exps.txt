@@ -101,6 +101,33 @@ xxd f3_nopad.txt
 
 
 
+8)
+1️⃣ Generate RSA Private Key (2048-bit)
+openssl genrsa -out key.pri 2048
+2️⃣ Generate Public Key from Private Key
+openssl rsa -in key.pri -out key.pub -pubout
+3️⃣ View Private Key Details (Optional)
+openssl rsa -in key.pri -noout -text
+4️⃣ Encrypt a Message Using Public Key
+echo "Hello" > msg.txt
+openssl rsautl -encrypt -inkey key.pub -pubin -in msg.txt -out msg.enc
+5️⃣ Decrypt the Message Using Private Key
+openssl rsautl -decrypt -inkey key.pri -in msg.enc -out msg.dec
+cat msg.dec
+6️⃣ Generate a Random Secret Key
+openssl rand -hex 32 > secret.key
+7️⃣ Encrypt the Secret Key Using Public Key
+openssl rsautl -encrypt -inkey key.pub -pubin -in secret.key -out secret.key.enc
+8️⃣ Decrypt the Secret Key Using Private Key
+openssl rsautl -decrypt -inkey key.pri -in secret.key.enc -out secret.key.dec
+cat secret.key
+cat secret.key.dec
+
+
+
+
+
+
 
 
 
