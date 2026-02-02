@@ -301,6 +301,19 @@ Stego()
 
 
 
+tcp
+udp
+http
+dns
+ftp
+smtp
+ip.addr == 192.168.1.1
+tcp.port == 80
+tcp.port == 443
+frame.len > 1000
+
+
+
 
 
 
