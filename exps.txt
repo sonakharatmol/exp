@@ -359,3 +359,20 @@ for port in range(80, 83):
         print("Port", port, "is OPEN")
     else:
         print("Port", port, "is CLOSED")
+
+
+
+
+
+#!/bin/bash
+
+host="www.example.com"
+
+read -p "Enter the starting port number: " s
+read -p "Enter the ending port number: " e
+
+for ((port=$s; port<=$e; port++))
+do
+    echo "Scanning port $port ---"
+    nc -zv -w1 "$host" "$port" 2>&1
+done
