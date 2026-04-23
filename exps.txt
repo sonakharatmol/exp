@@ -313,8 +313,49 @@ tcp.port == 443
 frame.len > 1000
 
 
+send(IP(dst="8.8.8.8")/ICMP(), count=10)
+result, _ = traceroute(["www.example.com", "www.google.com"], maxttl=20)
 
 
 
 
 
+
+from scapy.all import *
+
+# Target network
+target = "192.168.1.0/24"
+
+# Create and send ARP request
+ans, _ = srp(Ether(dst="ff:ff:ff:ff:ff:ff")/ARP(pdst=target), timeout=2)
+
+# Print result
+for s, r in ans:
+    print(r.psrc, " --> ", r.hwsrc)
+
+
+
+
+
+from scapy.all import *
+
+def show(pkt):
+    if pkt.haslayer(ICMP):
+        print(pkt[IP].src, "->", pkt[IP].dst)
+
+sniff(filter="icmp", prn=show)
+
+
+
+
+from scapy.all import *
+
+target = "www.example.com"
+
+for port in range(80, 83):
+    resp = sr1(IP(dst=target)/TCP(dport=port, flags="S"), timeout=1, verbose=0)
+    
+    if resp:
+        print("Port", port, "is OPEN")
+    else:
+        print("Port", port, "is CLOSED")
